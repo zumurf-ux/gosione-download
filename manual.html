@@ -1,0 +1,383 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>고시ONE 사용자 매뉴얼</title>
+  <meta name="description" content="고시ONE 앱 설치, 라이선스 인증, 객실, 월세, 입퇴실, 백업 사용 방법">
+  <style>
+    @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css");
+
+    :root {
+      --blue:#0b8ff0;
+      --blue-dark:#0874c7;
+      --ink:#111827;
+      --muted:#6b7280;
+      --line:#dbe3ee;
+      --soft:#f4f8fc;
+      --white:#fff;
+      --warn:#fff7ed;
+      --warn-line:#fed7aa;
+    }
+
+    * { box-sizing:border-box; }
+
+    body {
+      margin:0;
+      font-family:"Pretendard","Noto Sans KR","Malgun Gothic","Apple SD Gothic Neo",-apple-system,BlinkMacSystemFont,sans-serif;
+      color:var(--ink);
+      background:#eef4f9;
+      letter-spacing:0;
+      -webkit-font-smoothing:antialiased;
+    }
+
+    a { color:inherit; text-decoration:none; }
+
+    .page {
+      width:min(100%, 980px);
+      min-height:100vh;
+      margin:0 auto;
+      background:var(--white);
+    }
+
+    .hero {
+      padding:42px 34px 30px;
+      border-bottom:1px solid var(--line);
+      background:linear-gradient(180deg, rgba(255,255,255,.92), rgba(255,255,255,1)), var(--white);
+    }
+
+    .brand {
+      display:flex;
+      align-items:center;
+      gap:12px;
+      margin-bottom:26px;
+      font-weight:900;
+      font-size:18px;
+    }
+
+    .brand img {
+      width:42px;
+      height:42px;
+      border-radius:10px;
+      object-fit:cover;
+    }
+
+    h1 {
+      margin:0 0 12px;
+      font-size:36px;
+      line-height:1.18;
+      letter-spacing:0;
+    }
+
+    .lead {
+      max-width:680px;
+      margin:0;
+      color:var(--muted);
+      font-size:15px;
+      line-height:1.65;
+    }
+
+    .meta {
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin-top:20px;
+    }
+
+    .chip {
+      display:inline-flex;
+      align-items:center;
+      min-height:34px;
+      padding:0 12px;
+      border:1px solid var(--line);
+      border-radius:8px;
+      background:var(--soft);
+      color:#334155;
+      font-size:13px;
+      font-weight:800;
+    }
+
+    .content {
+      display:grid;
+      gap:14px;
+      padding:28px 34px 38px;
+    }
+
+    .section {
+      border:1px solid var(--line);
+      border-radius:10px;
+      padding:20px;
+      background:var(--white);
+    }
+
+    .section h2 {
+      margin:0 0 12px;
+      font-size:20px;
+      line-height:1.35;
+    }
+
+    .section h3 {
+      margin:18px 0 8px;
+      font-size:16px;
+    }
+
+    p {
+      margin:8px 0;
+      color:#334155;
+      font-size:14px;
+      line-height:1.7;
+    }
+
+    ul, ol {
+      margin:10px 0 0;
+      padding-left:22px;
+      color:#334155;
+      font-size:14px;
+      line-height:1.75;
+    }
+
+    li + li { margin-top:4px; }
+
+    code {
+      padding:2px 6px;
+      border-radius:6px;
+      background:#eef2f7;
+      color:#0f172a;
+      font-family:inherit;
+      font-weight:800;
+    }
+
+    .notice {
+      margin-top:12px;
+      padding:12px 14px;
+      border:1px solid var(--warn-line);
+      border-radius:8px;
+      background:var(--warn);
+      color:#7c2d12;
+      font-size:13px;
+      line-height:1.65;
+    }
+
+    .quick {
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0, 1fr));
+      gap:10px;
+      margin-top:18px;
+    }
+
+    .quick a {
+      min-height:42px;
+      display:flex;
+      align-items:center;
+      padding:0 12px;
+      border:1px solid var(--line);
+      border-radius:8px;
+      background:#fbfdff;
+      color:#334155;
+      font-size:13px;
+      font-weight:800;
+    }
+
+    .footer {
+      padding:20px 34px 32px;
+      border-top:1px solid var(--line);
+      color:#94a3b8;
+      font-size:12px;
+      text-align:center;
+    }
+
+    @media (max-width:760px) {
+      .page { width:100%; }
+      .hero { padding:30px 18px 24px; }
+      h1 { font-size:30px; }
+      .content { padding:18px; }
+      .section { padding:16px; border-radius:8px; }
+      .quick { grid-template-columns:1fr; }
+      .footer { padding:18px 18px 28px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero">
+      <div class="brand">
+        <img src="gosione-logo.png" alt="고시ONE 로고">
+        <span>고시ONE</span>
+      </div>
+      <h1>고시ONE 사용자 매뉴얼</h1>
+      <p class="lead">고시ONE 앱 설치부터 라이선스 인증, 객실 관리, 월세 관리, 입퇴실 기록, 백업과 복원까지 기본 사용 방법을 안내합니다.</p>
+      <div class="meta">
+        <span class="chip">버전 5.0.3 기준</span>
+        <span class="chip">작성일 2026-06-15</span>
+      </div>
+      <nav class="quick" aria-label="빠른 이동">
+        <a href="#install">앱 설치와 첫 실행</a>
+        <a href="#license">라이선스 인증</a>
+        <a href="#rooms">객실 관리</a>
+        <a href="#rent">월세 관리</a>
+        <a href="#move">입퇴실 관리</a>
+        <a href="#backup">백업과 복원</a>
+      </nav>
+    </section>
+
+    <section class="content">
+      <article class="section" id="install">
+        <h2>1. 앱 설치와 첫 실행</h2>
+        <ol>
+          <li>전달받은 APK 파일을 휴대폰에 설치합니다.</li>
+          <li>설치 후 고시ONE 앱을 실행합니다.</li>
+          <li>알림 권한 요청 창이 나오면 <code>허용</code>을 누릅니다.</li>
+          <li>라이선스 인증 화면이 나오면 구매한 라이선스키를 입력합니다.</li>
+          <li>인증이 완료되면 고시ONE 홈 화면으로 이동합니다.</li>
+        </ol>
+        <div class="notice">알림을 허용하지 않으면 월세 납부 예정 알림이 오지 않을 수 있습니다. 실수로 거절했다면 휴대폰 설정에서 고시ONE 앱 알림 권한을 다시 켜주세요.</div>
+      </article>
+
+      <article class="section" id="license">
+        <h2>2. 라이선스 인증</h2>
+        <p>라이선스키는 앱을 사용하기 위한 인증번호입니다.</p>
+        <ol>
+          <li>앱 실행 후 라이선스 인증 화면에서 라이선스키를 입력합니다.</li>
+          <li><code>인증하기</code> 버튼을 누릅니다.</li>
+          <li>인증이 완료되면 앱을 사용할 수 있습니다.</li>
+        </ol>
+        <p>라이선스키는 재설치나 기기 변경 시 필요할 수 있으니 따로 보관해주세요.</p>
+        <p>설정 메뉴 하단의 <code>라이선스 정보</code>에서 상태, 라이선스키 일부, 인증일을 확인할 수 있습니다.</p>
+      </article>
+
+      <article class="section">
+        <h2>3. 홈 화면</h2>
+        <p>홈 화면에서는 고시원 전체 상태를 한눈에 확인할 수 있습니다.</p>
+        <ul>
+          <li>전체 객실 수, 입주중 객실, 공실, 예약중</li>
+          <li>월세연체, 수리중, 오늘 입주, 오늘 퇴실</li>
+          <li>계약종료 임박</li>
+        </ul>
+        <p>각 항목을 확인하면서 현재 고시원의 운영 상태를 빠르게 파악할 수 있습니다.</p>
+      </article>
+
+      <article class="section" id="rooms">
+        <h2>4. 객실 관리</h2>
+        <p>객실 메뉴에서는 각 호실의 입주자 정보를 관리합니다.</p>
+        <ul>
+          <li>호실, 이름, 연락처</li>
+          <li>입주일, 퇴실일</li>
+          <li>월세, 보증금, 메모</li>
+        </ul>
+        <p>입주자가 들어오면 해당 호실을 선택해 정보를 입력합니다. 입주자 정보가 변경되면 같은 화면에서 수정할 수 있습니다.</p>
+      </article>
+
+      <article class="section" id="rent">
+        <h2>5. 월세 관리</h2>
+        <p>월세 메뉴에서는 월별 납부 상태를 확인합니다.</p>
+        <ul>
+          <li>납부 예정 금액</li>
+          <li>납부 여부와 미납 여부</li>
+          <li>납부일과 월별 상태</li>
+        </ul>
+        <p>납부가 완료된 입주자는 납부 처리해두면 미납 관리가 쉬워집니다.</p>
+      </article>
+
+      <article class="section">
+        <h2>6. 알림 설정</h2>
+        <p>고시ONE 알림은 월세 납부 예정자를 미리 확인하기 위한 기능입니다.</p>
+        <p>예를 들어 납부일이 6월 14일이고 알림 시간이 오전 9시라면, 6월 13일 오전 9시에 알림이 옵니다.</p>
+        <p>알림 내용 예시: <code>202호 김철수님 월세 380,000원 납부 예정일이 내일입니다.</code></p>
+        <p>납부 예정자가 여러 명이면 사람별로 각각 알림이 올 수 있습니다. 알림을 누르면 고시ONE 앱이 열립니다.</p>
+      </article>
+
+      <article class="section" id="move">
+        <h2>7. 입퇴실 관리</h2>
+        <p>입퇴실 메뉴에서는 입주 예정, 퇴실 예정, 공실, 퇴실 기록을 확인할 수 있습니다.</p>
+        <ol>
+          <li>퇴실 예정 입주자를 확인합니다.</li>
+          <li><code>퇴실 처리</code> 버튼을 누릅니다.</li>
+          <li>퇴실이 완료되면 해당 기록이 <code>퇴실 기록</code>에 남습니다.</li>
+        </ol>
+        <p>퇴실 기록에는 호실, 이름, 연락처, 퇴실일, 입주일, 월세가 표시됩니다.</p>
+        <p>퇴실 기록은 자동 삭제되지 않습니다. 퇴실 후 1개월이 지난 기록에는 <code>퇴실 후 1개월 경과</code> 문구가 회색 작은 글씨로 표시됩니다.</p>
+        <p>필요 없는 퇴실 기록은 사용자가 직접 <code>삭제</code> 버튼으로 정리할 수 있습니다.</p>
+      </article>
+
+      <article class="section">
+        <h2>8. 민원/수리 관리</h2>
+        <p>민원 또는 수리할 일이 있으면 민원/수리 메뉴에서 기록합니다.</p>
+        <ul>
+          <li>전등 교체, 도어락 문제, 수도 문제</li>
+          <li>에어컨 점검, 벽지 보수</li>
+        </ul>
+        <p>처리 전과 처리 완료 상태를 나누어 관리하면 놓치는 일이 줄어듭니다.</p>
+      </article>
+
+      <article class="section">
+        <h2>9. 비거주자/공용 관리</h2>
+        <p>앱 설정에 따라 비거주자 또는 공용 요금 관리 기능을 사용할 수 있습니다.</p>
+        <p>공용 이용자, 별도 요금 납부자, 월세와 별도로 관리할 대상이 있을 때 이름, 연락처, 금액, 납부 상태를 입력해 관리합니다.</p>
+      </article>
+
+      <article class="section" id="backup">
+        <h2>10. 백업</h2>
+        <p>백업은 휴대폰 분실, 기기 변경, 앱 재설치에 대비하기 위해 꼭 필요합니다.</p>
+        <ul>
+          <li><code>데이터 내부 백업</code>: 현재 휴대폰 안에 백업 저장</li>
+          <li><code>데이터 외부 백업</code>: 카카오톡, 파일 앱 등 외부 앱으로 백업 파일 공유</li>
+        </ul>
+        <p>평소에는 내부 백업을 사용하고, 휴대폰을 바꾸기 전에는 반드시 외부 백업을 해두는 것을 추천합니다.</p>
+      </article>
+
+      <article class="section">
+        <h2>11. 복원</h2>
+        <p>복원은 이전에 저장한 백업 파일을 다시 불러오는 기능입니다.</p>
+        <ul>
+          <li><code>내부 데이터 복원</code>: 휴대폰 내부에 저장된 백업 복원</li>
+          <li><code>외부 데이터 복원</code>: 외부에서 받은 백업 파일을 선택해 복원</li>
+        </ul>
+        <div class="notice">복원을 하면 현재 앱 안의 데이터가 백업 파일 내용으로 바뀔 수 있습니다. 복원 전에는 현재 데이터도 백업해두는 것이 좋습니다.</div>
+      </article>
+
+      <article class="section">
+        <h2>12. 설정</h2>
+        <p>설정 메뉴에서는 앱 사용에 필요한 옵션을 관리합니다.</p>
+        <ul>
+          <li>알림 설정과 알림 시간</li>
+          <li>백업/복원</li>
+          <li>라이선스 정보</li>
+          <li>앱 버전</li>
+        </ul>
+        <p>설정 하단에는 앱 버전과 저작권 정보가 표시됩니다.</p>
+      </article>
+
+      <article class="section">
+        <h2>13. 자주 묻는 질문</h2>
+        <h3>알림이 오지 않아요.</h3>
+        <p>휴대폰 설정에서 고시ONE 알림 권한이 켜져 있는지 확인해주세요. 또한 앱 설정에서 알림 기능과 알림 시간이 제대로 설정되어 있는지 확인해주세요.</p>
+        <h3>앱을 삭제하면 데이터가 사라지나요?</h3>
+        <p>앱 삭제 시 휴대폰 내부 데이터가 사라질 수 있습니다. 삭제 전에는 반드시 <code>데이터 외부 백업</code>을 해주세요.</p>
+        <h3>휴대폰을 바꾸면 어떻게 하나요?</h3>
+        <p>기존 휴대폰에서 <code>데이터 외부 백업</code>을 먼저 합니다. 새 휴대폰에 앱을 설치하고 라이선스 인증 후 <code>외부 데이터 복원</code>을 진행합니다.</p>
+        <h3>퇴실 기록은 자동으로 없어지나요?</h3>
+        <p>아니요. 퇴실 기록은 자동 삭제되지 않습니다. 필요 없는 기록은 직접 <code>삭제</code> 버튼으로 정리합니다.</p>
+        <h3>라이선스키를 잃어버렸어요.</h3>
+        <p>앱을 구매한 곳 또는 관리자에게 문의해주세요. 라이선스키는 재설치나 기기 변경 시 필요할 수 있으므로 꼭 보관하는 것이 좋습니다.</p>
+      </article>
+
+      <article class="section">
+        <h2>14. 사용 전 추천 순서</h2>
+        <ol>
+          <li>앱 설치</li>
+          <li>알림 권한 허용</li>
+          <li>라이선스 인증</li>
+          <li>설정에서 알림 시간 확인</li>
+          <li>객실 정보 입력</li>
+          <li>입주자 정보 입력</li>
+          <li>월세 납부일과 금액 확인</li>
+          <li>첫 백업 진행</li>
+        </ol>
+        <p>처음에는 객실과 입주자 정보를 정확히 입력해두는 것이 가장 중요합니다. 기본 정보가 정확해야 월세, 알림, 입퇴실 관리가 편해집니다.</p>
+      </article>
+    </section>
+
+    <footer class="footer">© 2026 디자인하는삼촌</footer>
+  </main>
+</body>
+</html>

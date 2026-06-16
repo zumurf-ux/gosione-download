@@ -370,11 +370,44 @@
       }
       h1 { font-size: 29px; }
       .lead { font-size: 15px; }
-      .phone { display: none; }
+      .phone {
+        display: block;
+        width: min(72vw, 230px);
+        border-radius: 30px;
+        padding: 8px;
+        box-shadow: 0 18px 42px rgba(15, 23, 42, .18);
+      }
+      .phone::before {
+        top: 12px;
+        width: 54px;
+        height: 14px;
+      }
+      .phone::after {
+        top: 82px;
+        height: 46px;
+      }
+      .phone-screen {
+        border-radius: 24px;
+        padding: 78px 10px 0;
+      }
+      .phone-screen img {
+        transform: scale(1.08);
+      }
       .app-summary { max-width: none; }
       .point-list { max-width: none; grid-template-columns: 1fr; }
-      .install-section { grid-template-columns: 1fr; }
-      .install-mascot { display: none; }
+      .install-section {
+        grid-template-columns: 1fr;
+        justify-items: center;
+      }
+      .install-section > div {
+        width: 100%;
+      }
+      .install-mascot {
+        display: block;
+        width: min(42vw, 150px);
+        justify-self: center;
+        margin-top: 4px;
+      }
       .content { padding: 18px; }
       .info-grid { grid-template-columns: 1fr; }
       .footer { padding: 18px 18px 28px; }
@@ -393,7 +426,7 @@
         <p class="lead">고시원 객실, 입주자, 월세, 입퇴실 기록을 휴대폰에서 간편하게 관리하세요.</p>
         <div class="actions">
           <a class="btn primary" href="https://github.com/zumurf-ux/gosione-download/releases/download/v5.0.45/gosione_v5.0.45.apk">고시ONE APK 다운로드</a>
-          <a class="btn secondary" href="고시ONE_사용자_매뉴얼_v5.0.3.md" download>사용자 매뉴얼 다운로드</a>
+          <a class="btn secondary" href="manual.html">사용자 매뉴얼 보기</a>
         </div>
         <p class="note">구매 후 발급받은 라이선스키를 앱 첫 실행 시 입력하시면 사용할 수 있습니다.</p>
         <div class="app-summary">
