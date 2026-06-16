@@ -440,7 +440,7 @@
         <h1>고시ONE 앱 다운로드</h1>
         <p class="lead">고시원 객실, 입주자, 월세, 입퇴실 기록을 휴대폰에서 간편하게 관리하세요.</p>
         <div class="actions">
-          <a class="btn primary" href="https://github.com/zumurf-ux/gosione-download/releases/download/v5.0.45/gosione_v5.0.45.apk">고시ONE APK 다운로드</a>
+          <a id="apkDownloadButton" class="btn primary" href="https://github.com/zumurf-ux/gosione-download/releases/latest">고시ONE APK 다운로드</a>
           <a class="btn secondary" href="manual.html">사용자 매뉴얼</a>
         </div>
         <p class="note">구매 후 발급받은 라이선스키를 앱 첫 실행 시 입력하시면 사용할 수 있습니다.</p>
@@ -536,5 +536,34 @@
       © 2026 디자인하는삼촌
     </footer>
   </main>
+  <script>
+    (() => {
+      const button = document.getElementById("apkDownloadButton");
+      if (!button) return;
+
+      const fallbackUrl = "https://github.com/zumurf-ux/gosione-download/releases/latest";
+
+      async function setLatestApkLink() {
+        try {
+          const response = await fetch("https://api.github.com/repos/zumurf-ux/gosione-download/releases/latest", {
+            headers: { "Accept": "application/vnd.github+json" }
+          });
+          if (!response.ok) throw new Error("release lookup failed");
+
+          const release = await response.json();
+          const assets = Array.isArray(release.assets) ? release.assets : [];
+          const apk = assets.find(asset => /^gosione.*\.apk$/i.test(asset.name || ""))
+            || assets.find(asset => /\.apk$/i.test(asset.name || ""));
+
+          if (!apk?.browser_download_url) throw new Error("apk asset missing");
+          button.href = apk.browser_download_url;
+        } catch (error) {
+          button.href = fallbackUrl;
+        }
+      }
+
+      setLatestApkLink();
+    })();
+  </script>
 </body>
 </html>
