@@ -82,24 +82,11 @@
       line-height: 1.6;
     }
 
-    .version {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 12px;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      color: #334155;
-      background: var(--soft);
-      font-size: 14px;
-      font-weight: 700;
-      margin-bottom: 18px;
-    }
-
     .actions {
       display: grid;
       gap: 10px;
       max-width: 420px;
+      margin-top: 24px;
     }
 
     .btn {
@@ -112,6 +99,9 @@
       font-weight: 800;
       font-size: 16px;
       border: 1px solid transparent;
+      text-decoration: none;
+      transform: translateY(0);
+      transition: transform .16s ease, background-color .16s ease, border-color .16s ease, box-shadow .16s ease;
     }
 
     .btn.primary {
@@ -120,12 +110,26 @@
       box-shadow: 0 12px 26px rgba(11, 143, 240, .24);
     }
 
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn:active {
+      transform: translateY(0);
+    }
+
     .btn.primary:hover { background: var(--blue-dark); }
 
     .btn.secondary {
       background: var(--white);
       color: var(--ink);
       border-color: var(--line);
+    }
+
+    .btn.secondary:hover {
+      background: #f8fbff;
+      border-color: #b8c7d9;
+      box-shadow: 0 10px 22px rgba(15, 23, 42, .08);
     }
 
     .note {
@@ -387,7 +391,6 @@
         </div>
         <h1>고시ONE 앱 다운로드</h1>
         <p class="lead">고시원 객실, 입주자, 월세, 입퇴실 기록을 휴대폰에서 간편하게 관리하세요.</p>
-        <div class="version">최신 버전 v5.0.3</div>
         <div class="actions">
           <a class="btn primary" href="https://github.com/zumurf-ux/gosione-download/releases/download/v5.0.45/ONE_v5.0.45.apk">고시ONE APK 다운로드</a>
           <a class="btn secondary" href="고시ONE_사용자_매뉴얼_v5.0.3.md" download>사용자 매뉴얼 다운로드</a>
