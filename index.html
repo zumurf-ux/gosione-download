@@ -29,6 +29,8 @@
       letter-spacing: 0;
       -webkit-font-smoothing: antialiased;
       text-rendering: optimizeLegibility;
+      word-break: keep-all;
+      overflow-wrap: break-word;
     }
 
     a { color: inherit; text-decoration: none; }
@@ -79,7 +81,8 @@
       margin: 0 0 22px;
       color: var(--muted);
       font-size: 15px;
-      line-height: 1.6;
+      line-height: 1.7;
+      max-width: 760px;
     }
 
     .actions {
@@ -135,12 +138,14 @@
       margin-top: 14px;
       color: var(--muted);
       font-size: 13px;
-      line-height: 1.55;
+      line-height: 1.65;
+      word-break: keep-all;
+      overflow-wrap: break-word;
     }
 
     .small-note {
       font-size: 12px;
-      line-height: 1.55;
+      line-height: 1.65;
     }
 
     .app-summary {
@@ -162,7 +167,9 @@
       margin: 0;
       color: var(--muted);
       font-size: 14px;
-      line-height: 1.65;
+      line-height: 1.7;
+      word-break: keep-all;
+      overflow-wrap: break-word;
     }
 
     .point-list {
@@ -191,7 +198,9 @@
       display: block;
       color: var(--muted);
       font-size: 13px;
-      line-height: 1.5;
+      line-height: 1.65;
+      word-break: keep-all;
+      overflow-wrap: break-word;
     }
 
     .phone {
@@ -304,7 +313,10 @@
       gap: 10px;
       align-items: start;
       color: #334155;
-      line-height: 1.55;
+      font-size: 14px;
+      line-height: 1.75;
+      word-break: keep-all;
+      overflow-wrap: break-word;
     }
 
     .num {
@@ -342,15 +354,19 @@
     .info span {
       color: var(--muted);
       font-size: 13px;
-      line-height: 1.5;
+      line-height: 1.65;
+      word-break: keep-all;
+      overflow-wrap: break-word;
     }
 
     .warning {
       border-color: #fed7aa;
       background: #fff7ed;
       color: #7c2d12;
-      font-size: 12px;
-      line-height: 1.6;
+      font-size: 13px;
+      line-height: 1.65;
+      word-break: keep-all;
+      overflow-wrap: break-word;
     }
 
     .footer {
@@ -367,8 +383,8 @@
         padding: 28px 18px 22px;
         gap: 24px;
       }
-      h1 { font-size: 29px; }
-      .lead { font-size: 15px; }
+      h1 { font-size: 30px; }
+      .lead { font-size: 14px; line-height: 1.75; }
       .phone {
         display: block;
         width: min(72vw, 230px);
