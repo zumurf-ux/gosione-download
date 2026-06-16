@@ -1,0 +1,489 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>고시ONE 다운로드</title>
+  <meta name="description" content="고시ONE 앱 다운로드 및 설치 안내">
+  <style>
+    @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css");
+
+    :root {
+      --blue: #0b8ff0;
+      --blue-dark: #0874c7;
+      --ink: #111827;
+      --muted: #6b7280;
+      --line: #dbe3ee;
+      --soft: #f4f8fc;
+      --white: #ffffff;
+      --danger: #ef4444;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Pretendard", "Noto Sans KR", "Malgun Gothic", "Apple SD Gothic Neo", -apple-system, BlinkMacSystemFont, sans-serif;
+      color: var(--ink);
+      background: #eef4f9;
+      letter-spacing: 0;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .page {
+      width: min(100%, 980px);
+      margin: 0 auto;
+      background: var(--white);
+      min-height: 100vh;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 32px;
+      align-items: start;
+      padding: 44px 34px 30px;
+      border-bottom: 1px solid var(--line);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.9), rgba(255,255,255,1)),
+        var(--white);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 28px;
+      font-weight: 800;
+      font-size: 18px;
+    }
+
+    .brand img {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      object-fit: cover;
+    }
+
+    h1 {
+      margin: 0 0 12px;
+      font-size: 36px;
+      line-height: 1.18;
+      letter-spacing: 0;
+    }
+
+    .lead {
+      margin: 0 0 22px;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    .version {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      color: #334155;
+      background: var(--soft);
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 18px;
+    }
+
+    .actions {
+      display: grid;
+      gap: 10px;
+      max-width: 420px;
+    }
+
+    .btn {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 52px;
+      padding: 0 18px;
+      border-radius: 8px;
+      font-weight: 800;
+      font-size: 16px;
+      border: 1px solid transparent;
+    }
+
+    .btn.primary {
+      background: var(--blue);
+      color: var(--white);
+      box-shadow: 0 12px 26px rgba(11, 143, 240, .24);
+    }
+
+    .btn.primary:hover { background: var(--blue-dark); }
+
+    .btn.secondary {
+      background: var(--white);
+      color: var(--ink);
+      border-color: var(--line);
+    }
+
+    .note {
+      margin-top: 14px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    .small-note {
+      font-size: 12px;
+      line-height: 1.55;
+    }
+
+    .app-summary {
+      max-width: 420px;
+      margin-top: 16px;
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #f8fbff;
+    }
+
+    .app-summary strong {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 16px;
+    }
+
+    .app-summary p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.65;
+    }
+
+    .point-list {
+      max-width: 420px;
+      margin-top: 12px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+
+    .point {
+      min-height: 88px;
+      padding: 14px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--white);
+    }
+
+    .point strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 15px;
+    }
+
+    .point span {
+      display: block;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .phone {
+      justify-self: center;
+      width: min(100%, 390px);
+      aspect-ratio: 9 / 18.6;
+      padding: 12px;
+      border-radius: 42px;
+      background: linear-gradient(145deg, #111827, #273244);
+      box-shadow:
+        0 34px 70px rgba(15, 23, 42, .25),
+        inset 0 0 0 1px rgba(255,255,255,.08);
+      position: relative;
+    }
+
+    .phone::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 18px;
+      width: 86px;
+      height: 23px;
+      transform: translateX(-50%);
+      border-radius: 999px;
+      background: #111827;
+      z-index: 2;
+      box-shadow: inset 0 -1px 0 rgba(255,255,255,.08);
+    }
+
+    .phone::after {
+      content: "";
+      position: absolute;
+      right: -3px;
+      top: 132px;
+      width: 3px;
+      height: 72px;
+      border-radius: 999px;
+      background: #1f2937;
+    }
+
+    .phone-screen {
+      height: 100%;
+      background: #fff;
+      border-radius: 32px;
+      overflow: hidden;
+      box-shadow: inset 0 0 0 1px rgba(15, 23, 42, .08);
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding: 150px 18px 0;
+    }
+
+    .phone-screen img {
+      width: auto;
+      height: 100%;
+      max-width: 100%;
+      display: block;
+      border-radius: 0;
+      object-fit: contain;
+      object-position: center bottom;
+      transform: scale(1.2);
+      transform-origin: center bottom;
+    }
+
+    .content {
+      padding: 28px 34px 42px;
+      display: grid;
+      gap: 16px;
+    }
+
+    .section {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 20px;
+      background: var(--white);
+    }
+
+    .install-section {
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 24px;
+      align-items: center;
+      padding: 18px 20px;
+    }
+
+    .install-mascot {
+      width: 300px;
+      justify-self: end;
+      align-self: center;
+      filter: drop-shadow(0 16px 22px rgba(15, 23, 42, .12));
+    }
+
+    .section h2 {
+      margin: 0 0 12px;
+      font-size: 20px;
+      letter-spacing: 0;
+    }
+
+    .steps {
+      display: grid;
+      gap: 10px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .steps li {
+      display: grid;
+      grid-template-columns: 30px 1fr;
+      gap: 10px;
+      align-items: start;
+      color: #334155;
+      line-height: 1.55;
+    }
+
+    .num {
+      width: 30px;
+      height: 30px;
+      border-radius: 999px;
+      background: #e8f4ff;
+      color: var(--blue-dark);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 14px;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .info {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 14px;
+      background: #fbfdff;
+    }
+
+    .info strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 15px;
+    }
+
+    .info span {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .warning {
+      border-color: #fed7aa;
+      background: #fff7ed;
+      color: #7c2d12;
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    .footer {
+      padding: 22px 34px 34px;
+      color: #94a3b8;
+      font-size: 12px;
+      text-align: center;
+    }
+
+    @media (max-width: 760px) {
+      .page { width: 100%; }
+      .hero {
+        grid-template-columns: 1fr;
+        padding: 28px 18px 22px;
+        gap: 24px;
+      }
+      h1 { font-size: 29px; }
+      .lead { font-size: 15px; }
+      .phone { width: min(100%, 330px); }
+      .app-summary { max-width: none; }
+      .point-list { max-width: none; grid-template-columns: 1fr; }
+      .install-section { grid-template-columns: 1fr; }
+      .install-mascot { display: none; }
+      .content { padding: 18px; }
+      .info-grid { grid-template-columns: 1fr; }
+      .footer { padding: 18px 18px 28px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero">
+      <div>
+        <div class="brand">
+          <img src="gosione-logo.png" alt="고시ONE 로고">
+          <span>고시ONE</span>
+        </div>
+        <h1>고시ONE 앱 다운로드</h1>
+        <p class="lead">고시원 객실, 입주자, 월세, 입퇴실 기록을 휴대폰에서 간편하게 관리하세요.</p>
+        <div class="version">최신 버전 v5.0.3</div>
+        <div class="actions">
+          <a class="btn primary" href="고시ONE_v5.0.3.apk" download>고시ONE APK 다운로드</a>
+          <a class="btn secondary" href="고시ONE_사용자_매뉴얼_v5.0.3.md" download>사용자 매뉴얼 다운로드</a>
+        </div>
+        <p class="note">구매 후 발급받은 라이선스키를 앱 첫 실행 시 입력하시면 사용할 수 있습니다.</p>
+        <div class="app-summary">
+          <strong>고시ONE은 어떤 앱인가요?</strong>
+          <p>고시원 객실 현황, 입주자 정보, 월세 납부, 입퇴실 기록, 민원/수리 내역을 한 곳에서 관리할 수 있는 고시원 전용 관리 앱입니다.</p>
+        </div>
+        <div class="point-list">
+          <div class="point">
+            <strong>객실 현황</strong>
+            <span>입주중, 공실, 예약중 상태를 한눈에 확인합니다.</span>
+          </div>
+          <div class="point">
+            <strong>월세 관리</strong>
+            <span>납부 예정, 납부 완료, 미납 상태를 월별로 관리합니다.</span>
+          </div>
+          <div class="point">
+            <strong>입퇴실 기록</strong>
+            <span>입주일과 퇴실일을 기록하고 퇴실 내역을 보관합니다.</span>
+          </div>
+          <div class="point">
+            <strong>알림과 백업</strong>
+            <span>월세 알림을 받고 데이터를 내부/외부로 백업합니다.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="phone" aria-hidden="true">
+        <div class="phone-screen">
+          <img src="gosione-start.jpg" alt="">
+        </div>
+      </div>
+    </section>
+
+    <section class="content">
+      <div class="section install-section">
+        <div>
+          <h2>설치 방법</h2>
+          <ol class="steps">
+            <li><span class="num">1</span><span>`고시ONE APK 다운로드` 버튼을 누릅니다.</span></li>
+            <li><span class="num">2</span><span>다운로드가 끝나면 APK 파일을 열어 설치합니다.</span></li>
+            <li><span class="num">3</span><span>설치 차단 안내가 나오면 앱 설치를 허용합니다.</span></li>
+            <li><span class="num">4</span><span>고시ONE을 실행하고 알림 권한을 허용합니다.</span></li>
+            <li><span class="num">5</span><span>구매 후 받은 라이선스키를 입력하면 앱을 사용할 수 있습니다.</span></li>
+          </ol>
+        </div>
+        <img class="install-mascot" src="gosione-mascot-cutout.png?v=3" alt="고시ONE 마스코트">
+      </div>
+
+      <div class="section warning">
+        안드로이드 휴대폰에서는 스토어 밖에서 받은 APK 설치 시 `출처를 알 수 없는 앱` 안내가 표시될 수 있습니다.<br>
+        고시ONE 설치를 위해 다운로드한 브라우저 또는 파일 앱의 설치 권한을 한 번만 허용해주세요.
+      </div>
+
+      <div class="section">
+        <h2>설치 권한 허용 방법</h2>
+        <ol class="steps">
+          <li><span class="num">1</span><span>APK 설치 중 `보안상의 이유로 설치할 수 없음` 또는 `출처를 알 수 없는 앱` 안내가 나오면 `설정`을 누릅니다.</span></li>
+          <li><span class="num">2</span><span>`이 출처 허용` 또는 `이 앱에서 설치 허용`을 켭니다.</span></li>
+          <li><span class="num">3</span><span>뒤로가기 버튼을 눌러 설치 화면으로 돌아갑니다.</span></li>
+          <li><span class="num">4</span><span>`설치` 버튼을 눌러 고시ONE 설치를 완료합니다.</span></li>
+        </ol>
+        <p class="note small-note">삼성 갤럭시 기준: `설정 > 보안 및 개인정보 보호 > 기타 보안 설정 > 출처를 알 수 없는 앱 설치`에서 Chrome, 삼성 인터넷, 내 파일 중 APK를 다운로드한 앱을 허용하면 됩니다.</p>
+      </div>
+
+      <div class="info-grid">
+        <div class="info">
+          <strong>라이선스 인증</strong>
+          <span>구매자에게 발급된 라이선스키를 입력해야 앱 사용이 가능합니다.</span>
+        </div>
+        <div class="info">
+          <strong>알림 기능</strong>
+          <span>월세 납부 예정일 하루 전에 설정한 시간으로 알림을 받을 수 있습니다.</span>
+        </div>
+        <div class="info">
+          <strong>백업/복원</strong>
+          <span>휴대폰 변경 전에는 데이터 외부 백업을 먼저 진행해주세요.</span>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>구매 후 안내</h2>
+        <ol class="steps">
+          <li><span class="num">1</span><span>고시ONE 라이선스를 구매합니다.</span></li>
+          <li><span class="num">2</span><span>판매자가 전달한 라이선스키를 확인합니다.</span></li>
+          <li><span class="num">3</span><span>이 페이지에서 APK를 다운로드해 설치합니다.</span></li>
+          <li><span class="num">4</span><span>앱 첫 실행 화면에서 라이선스키를 입력합니다.</span></li>
+        </ol>
+      </div>
+    </section>
+
+    <footer class="footer">
+      © 2026 디자인하는삼촌
+    </footer>
+  </main>
+</body>
+</html>
