@@ -8,7 +8,7 @@
   <style>
     :root{--blue:#0b8ff0;--blue-dark:#0753a8;--ink:#111827;--muted:#667085;--line:#d9e3ef;--soft:#f4f8fc;--white:#fff}
     *{box-sizing:border-box}
-    html{background:#eef4f9}
+    html{background:#eef4f9;scroll-behavior:smooth}
     body{margin:0;font-family:"Pretendard","Noto Sans KR","Malgun Gothic","Apple SD Gothic Neo",sans-serif;color:var(--ink);background:#eef4f9;word-break:keep-all;overflow-wrap:break-word;letter-spacing:0}
     .page{width:min(100%,1120px);margin:0 auto;min-height:100vh;background:var(--white)}
     .hero{padding:42px 38px 34px;border-bottom:1px solid var(--line);background:linear-gradient(135deg,#fff 0%,#f4f9ff 100%)}
@@ -16,11 +16,25 @@
     .brand-logo{display:block;width:220px;max-width:62vw;height:auto}
     h1{margin:0;font-size:38px;line-height:1.2;letter-spacing:0}
     .hero p{margin:12px 0 0;color:var(--muted);font-size:17px;line-height:1.6}
-    .quick{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-top:24px}
-    .quick div{padding:10px 8px;border:1px solid #cce4ff;border-radius:8px;background:#fff;text-align:center;color:var(--blue-dark);font-size:12px;font-weight:800}
+    .quick{display:grid;grid-template-columns:repeat(auto-fit,minmax(128px,1fr));gap:8px;margin-top:24px}
+    .quick a{display:flex;align-items:center;justify-content:center;min-height:40px;padding:10px 8px;border:1px solid #cce4ff;border-radius:8px;background:#fff;text-align:center;color:var(--blue-dark);font-size:12px;font-weight:800;text-decoration:none}
+    .quick a:active{background:#edf7ff}
     .content{display:grid;gap:22px;padding:32px 38px 46px}
     .manual-section{display:grid;grid-template-columns:340px minmax(0,1fr);gap:34px;align-items:center;padding:26px;border:1px solid var(--line);border-radius:14px;background:#fff}
     .manual-section:nth-child(even){background:#fbfdff}
+    .install-section{display:grid;gap:22px;padding:26px;border:1px solid var(--line);border-radius:14px;background:#fff}
+    .install-head{display:grid;gap:8px}
+    .install-head h2{margin:0;color:var(--blue-dark);font-size:24px;line-height:1.35}
+    .install-head p{margin:0;color:#344054;font-size:15px;line-height:1.75}
+    .install-grid{display:grid;grid-template-columns:1fr;gap:18px}
+    .install-card{display:grid;grid-template-columns:minmax(0,1fr);gap:18px;justify-items:center;padding:26px;border:1px solid #d8e8fb;border-radius:12px;background:#fbfdff}
+    .install-card .phone-shell{width:292px;max-width:292px}
+    .install-card .phone-screen img{clip-path:none}
+    .install-card strong{color:var(--blue-dark);font-size:15px;line-height:1.35}
+    .install-card p{margin:0;color:#344054;font-size:13px;line-height:1.65}
+    .install-text{display:grid;gap:6px}
+    .install-text .lines{display:grid;gap:5px;color:#344054;font-size:13px;line-height:1.65}
+    .install-text .lines span{display:block}
     .phone-shell{justify-self:center;width:292px;position:relative;background:transparent;isolation:isolate}
     .phone-shell::before{content:"";position:absolute;z-index:-1;inset:1.2% 3.5% 1.4%;border-radius:44px;background:rgba(255,255,255,.01);box-shadow:0 5px 8px rgba(15,35,68,.16),0 18px 24px rgba(15,35,68,.18),0 36px 44px rgba(15,35,68,.14)}
     .phone-screen{position:relative;z-index:1;background:transparent}
@@ -34,7 +48,10 @@
     .footer{padding:24px 38px 34px;color:#98a2b3;font-size:12px;text-align:center}
     @media(max-width:760px){
       .hero{padding:30px 20px 24px}h1{font-size:30px}.hero p{font-size:15px}.quick{grid-template-columns:repeat(2,1fr)}
-      .content{padding:22px 16px 34px}.manual-section{grid-template-columns:1fr;gap:20px;padding:18px}.phone-shell{order:2;width:min(72vw,292px)}.copy{order:1}.copy h2{font-size:21px}.copy p,.copy ul{font-size:14px}
+      .content{padding:22px 16px 34px}.manual-section{grid-template-columns:1fr;gap:20px;padding:18px}.install-section{padding:18px}.install-grid{grid-template-columns:1fr;gap:14px}.install-card{padding:18px}.install-card .phone-shell,.phone-shell{order:2;width:min(72vw,292px);max-width:292px}.copy{order:1}.copy h2,.install-head h2{font-size:21px}.copy p,.copy ul,.install-head p{font-size:14px}
+    }
+    @media(max-width:480px){
+      .install-grid{grid-template-columns:1fr}
     }
     @media print{html,body{background:#fff}.manual-section{break-inside:avoid}.page{width:100%}}
   </style>
@@ -45,48 +62,62 @@
       <div class="brand"><img class="brand-logo" src="manual-assets/logo.png" alt="고시ONE"></div>
       <h1>고시ONE 사용자 매뉴얼</h1>
       <p>객실, 월세, 입퇴실, 민원과 통계를 한곳에서 관리하는 방법을 화면과 함께 안내합니다.</p>
-      <div class="quick"><div>1. 라이선스 인증</div><div>2. 건물 설정</div><div>3. 객실 생성</div><div>4. 입주자 등록</div><div>5. 월세·입퇴실 관리</div><div>6. 백업·복원</div></div>
+      <div class="quick"><a href="#install">1. 설치 방법</a><a href="#license">2. 라이선스 인증</a><a href="#home">3. 홈</a><a href="#rooms">4. 객실 관리</a><a href="#rent">5. 월세 관리</a><a href="#move">6. 입퇴실 관리</a><a href="#issues">7. 민원·수리</a><a href="#stats">8. 통계</a><a href="#settings">9. 설정·데이터</a></div>
     </header>
 
     <section class="content">
-      <article class="manual-section">
+      <article class="install-section" id="install">
+        <div class="install-head">
+          <h2>1. 설치 방법</h2>
+          <p>고시ONE 설치파일을 처음 실행하면 Google Play 프로텍트 확인 화면이 나올 수 있습니다. 아래 순서대로 진행하면 앱을 안전하게 확인한 뒤 설치할 수 있습니다.</p>
+        </div>
+        <div class="install-grid">
+          <div class="install-card"><div class="install-text"><strong>1) 검사 화면 기다리기</strong><p>처음 설치할 때 휴대폰이 앱을 한 번 확인하는 과정입니다. 문제가 있는 화면이 아니니 잠시 기다리면 됩니다.</p><p>이 화면은 Play 스토어 밖에서 받은 설치파일을 휴대폰이 자동으로 확인할 때 나타납니다.</p></div><div class="phone-shell"><div class="phone-screen"><img src="manual-assets/install-search-cropped.png" alt="Google Play 프로텍트 검색 중 화면"></div></div></div>
+          <div class="install-card"><div class="install-text"><strong>2) 앱 검사 누르기</strong><div class="lines"><span>보안을 위해 확인을 권장하는 안내입니다.</span><span><b>앱 검사</b>를 누르면 휴대폰이 고시ONE 설치파일을 확인합니다.</span><span>고시ONE이 새 설치파일이거나 Play 스토어에 등록된 앱이 아니면 이 화면이 나올 수 있습니다.</span><span>기기에 따라 <b>무시하고 설치</b> 또는 비슷한 문구가 보이면 그 버튼을 눌러 설치를 계속하면 됩니다.</span></div></div><div class="phone-shell"><div class="phone-screen"><img src="manual-assets/install-check-cropped.png" alt="앱 검사 권장 화면"></div></div></div>
+          <div class="install-card"><div class="install-text"><strong>3) 안전 판단 확인하기</strong><p>안전한 앱으로 확인되면 계속 설치할 수 있습니다. 화면의 <b>설치</b> 버튼을 누르면 다음 단계로 진행됩니다.</p><p>검사가 끝나고 안전한 앱으로 판단되었다는 뜻이므로 안내에 따라 설치를 진행하면 됩니다.</p></div><div class="phone-shell"><div class="phone-screen"><img src="manual-assets/install-safe-cropped.png" alt="안전한 앱으로 판단됨 화면"></div></div></div>
+          <div class="install-card"><div class="install-text"><strong>4) 설치 누르기</strong><p>처음 설치 확인 화면입니다. <b>설치</b>를 누르면 고시ONE이 휴대폰에 설치됩니다.</p><p>휴대폰에 앱을 추가하기 전 마지막 확인 단계입니다. 특별한 권한을 요구하지 않는 안내라면 그대로 설치하면 됩니다.</p></div><div class="phone-shell"><div class="phone-screen"><img src="manual-assets/install-confirm-cropped.png" alt="설치 확인 화면"></div></div></div>
+        </div>
+        <div class="note">설치가 끝나면 고시ONE을 실행하고, 발급받은 라이선스키로 인증을 진행하세요.</div>
+      </article>
+
+      <article class="manual-section" id="license">
         <div class="phone-shell"><div class="phone-screen"><img src="manual-assets/screen-license.png" alt="라이선스 인증 화면"></div></div>
-        <div class="copy"><h2>1. 라이선스 인증</h2><p>앱을 처음 실행하면 발급받은 라이선스키를 입력해 이 기기에서 사용할 수 있도록 인증합니다.</p><ul><li>16자리 라이선스키를 순서대로 입력합니다.</li><li>인증하기를 누르면 홈 화면으로 이동합니다.</li><li>재설치나 기기 변경에 대비해 라이선스키를 따로 보관합니다.</li></ul><div class="note">업데이트할 때는 기존 앱을 삭제하지 말고 새 설치파일을 기존 앱 위에 설치하세요.</div></div>
+        <div class="copy"><h2>2. 라이선스 인증</h2><p>앱을 처음 실행하면 발급받은 라이선스키를 입력해 이 기기에서 사용할 수 있도록 인증합니다.</p><ul><li>16자리 라이선스키를 순서대로 입력합니다.</li><li>인증하기를 누르면 홈 화면으로 이동합니다.</li><li>재설치나 기기 변경에 대비해 라이선스키를 따로 보관합니다.</li></ul><div class="note">업데이트할 때는 기존 앱을 삭제하지 말고 새 설치파일을 기존 앱 위에 설치하세요.</div></div>
       </article>
 
-      <article class="manual-section">
+      <article class="manual-section" id="home">
         <div class="phone-shell"><div class="phone-screen"><img src="manual-assets/screen-home.png" alt="홈 화면"></div></div>
-        <div class="copy"><h2>2. 홈</h2><p>고시원 운영에 필요한 주요 현황과 오늘 일정을 첫 화면에서 확인합니다.</p><ul><li>전체 객실, 입주, 공실, 예약, 연체, 수리 중 객실 수를 확인합니다.</li><li>이번 달 예상 월세와 미납 금액을 확인합니다.</li><li>오늘 입주·퇴실 일정과 7일 내 퇴실예정자를 확인합니다.</li></ul><div class="note">오늘 날짜의 일정은 D-day 대신 한글로 <b>오늘</b>이라고 표시됩니다.</div></div>
+        <div class="copy"><h2>3. 홈</h2><p>고시원 운영에 필요한 주요 현황과 오늘 일정을 첫 화면에서 확인합니다.</p><ul><li>전체 객실, 입주, 공실, 예약, 연체, 수리 중 객실 수를 확인합니다.</li><li>이번 달 예상 월세와 미납 금액을 확인합니다.</li><li>오늘 입주·퇴실 일정과 7일 내 퇴실예정자를 확인합니다.</li></ul><div class="note">오늘 날짜의 일정은 D-day 대신 한글로 <b>오늘</b>이라고 표시됩니다.</div></div>
       </article>
 
-      <article class="manual-section">
+      <article class="manual-section" id="rooms">
         <div class="phone-shell"><div class="phone-screen"><img src="manual-assets/screen-rooms.png" alt="객실 화면"></div></div>
-        <div class="copy"><h2>3. 객실 관리</h2><p>층별 객실을 복도, 순서, 리스트 방식으로 확인하고 입주자와 객실 정보를 관리합니다.</p><ul><li>객실 생성에서 일반 객실 또는 공용공간을 선택해 추가합니다.</li><li>객실을 눌러 입주자, 계약기간, 월세와 메모를 저장합니다.</li><li>객실을 길게 누른 채 원하는 위치나 다른 층으로 옮깁니다.</li><li>초기화는 객실을 유지하고 정보만 비우며, 방 삭제는 객실 자체를 없앱니다.</li></ul><div class="note">비상주 정보는 객실 이동 대상에 포함되지 않습니다.</div></div>
+        <div class="copy"><h2>4. 객실 관리</h2><p>층별 객실을 복도, 순서, 리스트 방식으로 확인하고 입주자와 객실 정보를 관리합니다.</p><ul><li>객실 생성에서 일반 객실 또는 공용공간을 선택해 추가합니다.</li><li>객실을 눌러 입주자, 계약기간, 월세와 메모를 저장합니다.</li><li>객실을 길게 누른 채 원하는 위치나 다른 층으로 옮깁니다.</li><li>초기화는 객실을 유지하고 정보만 비우며, 방 삭제는 객실 자체를 없앱니다.</li></ul><div class="note">비상주 정보는 객실 이동 대상에 포함되지 않습니다.</div></div>
       </article>
 
-      <article class="manual-section">
+      <article class="manual-section" id="rent">
         <div class="phone-shell"><div class="phone-screen"><img src="manual-assets/screen-rent.png" alt="월세 관리 화면"></div></div>
-        <div class="copy"><h2>4. 월세 관리</h2><p>월별 예상 월세와 미납 금액을 확인하고 미납 안내 문구를 만들어 전달합니다.</p><ul><li>확인하려는 날짜와 월을 선택합니다.</li><li>미납자를 선택하면 안내 문구가 자동으로 작성됩니다.</li><li>복사를 눌러 문자나 메신저에 붙여넣습니다.</li><li>입금 확인 후 납부완료로 처리하며 필요하면 다시 미납으로 변경합니다.</li></ul></div>
+        <div class="copy"><h2>5. 월세 관리</h2><p>월별 예상 월세와 미납 금액을 확인하고 미납 안내 문구를 만들어 전달합니다.</p><ul><li>확인하려는 날짜와 월을 선택합니다.</li><li>미납자를 선택하면 안내 문구가 자동으로 작성됩니다.</li><li>복사를 눌러 문자나 메신저에 붙여넣습니다.</li><li>입금 확인 후 납부완료로 처리하며 필요하면 다시 미납으로 변경합니다.</li></ul></div>
       </article>
 
-      <article class="manual-section">
+      <article class="manual-section" id="move">
         <div class="phone-shell"><div class="phone-screen"><img src="manual-assets/screen-move.png" alt="입퇴실 관리 화면"></div></div>
-        <div class="copy"><h2>5. 입퇴실 관리</h2><p>입주 예정과 퇴실 예정 일정을 확인하고 퇴실을 처리합니다.</p><ul><li>입주일이 입력된 객실을 입주 예정에서 확인합니다.</li><li>오늘부터 7일 이내 퇴실예정자를 퇴실 예정에서 확인합니다.</li><li>퇴실 처리를 누르고 확인하면 객실이 공실로 바뀝니다.</li><li>퇴실자의 이름, 날짜와 계약 정보는 퇴실 기록에 남습니다.</li></ul><div class="note">퇴실 처리 시 객실이 공실로 변경되며, 입주자 정보는 퇴실 기록에 보관됩니다.</div></div>
+        <div class="copy"><h2>6. 입퇴실 관리</h2><p>입주 예정과 퇴실 예정 일정을 확인하고 퇴실을 처리합니다.</p><ul><li>입주일이 입력된 객실을 입주 예정에서 확인합니다.</li><li>오늘부터 7일 이내 퇴실예정자를 퇴실 예정에서 확인합니다.</li><li>퇴실 처리를 누르고 확인하면 객실이 공실로 바뀝니다.</li><li>퇴실자의 이름, 날짜와 계약 정보는 퇴실 기록에 남습니다.</li></ul><div class="note">퇴실 처리 시 객실이 공실로 변경되며, 입주자 정보는 퇴실 기록에 보관됩니다.</div></div>
       </article>
 
-      <article class="manual-section">
+      <article class="manual-section" id="issues">
         <div class="phone-shell"><div class="phone-screen"><img src="manual-assets/screen-issues.png" alt="민원 관리 화면"></div></div>
-        <div class="copy"><h2>6. 민원·수리 관리</h2><p>객실의 고장과 요청사항을 등록하고 처리 상태를 관리합니다.</p><ul><li>등록을 눌러 객실과 민원 내용을 입력합니다.</li><li>처리 중인 민원을 목록에서 확인합니다.</li><li>수리가 끝나면 완료 처리해 상태를 정리합니다.</li></ul></div>
+        <div class="copy"><h2>7. 민원·수리 관리</h2><p>객실의 고장과 요청사항을 등록하고 처리 상태를 관리합니다.</p><ul><li>등록을 눌러 객실과 민원 내용을 입력합니다.</li><li>처리 중인 민원을 목록에서 확인합니다.</li><li>수리가 끝나면 완료 처리해 상태를 정리합니다.</li></ul></div>
       </article>
 
-      <article class="manual-section">
+      <article class="manual-section" id="stats">
         <div class="phone-shell"><div class="phone-screen"><img src="manual-assets/screen-stats.png" alt="통계 화면"></div></div>
-        <div class="copy"><h2>7. 통계</h2><p>예상 매출, 입주율, 공실률, 연체금액과 객실 상태 비율을 확인합니다.</p><ul><li>기준 날짜를 선택해 해당 시점의 운영 현황을 확인합니다.</li><li>입주 중, 공실, 예약, 퇴실 예정, 월세 연체, 수리 중 수를 확인합니다.</li><li>보증금 항목을 켜면 등록된 보증금 통계도 함께 확인합니다.</li></ul></div>
+        <div class="copy"><h2>8. 통계</h2><p>예상 매출, 입주율, 공실률, 연체금액과 객실 상태 비율을 확인합니다.</p><ul><li>기준 날짜를 선택해 해당 시점의 운영 현황을 확인합니다.</li><li>입주 중, 공실, 예약, 퇴실 예정, 월세 연체, 수리 중 수를 확인합니다.</li><li>보증금 항목을 켜면 등록된 보증금 통계도 함께 확인합니다.</li></ul></div>
       </article>
 
-      <article class="manual-section">
+      <article class="manual-section" id="settings">
         <div class="phone-shell"><div class="phone-screen"><img src="manual-assets/screen-settings.png" alt="설정 화면"></div></div>
-        <div class="copy"><h2>8. 설정과 데이터 관리</h2><p>건물 정보, 기본 월세, 알림, 비상주와 백업·복원 기능을 관리합니다.</p><ul><li>건물명, 총 층수, 고시원 시작층과 끝층을 입력하고 저장합니다.</li><li>기본 보증금, 월세와 납부일을 저장합니다.</li><li>납부 예정 알림을 켜고 원하는 알림 시간을 정합니다.</li><li>내부 백업은 다운로드 폴더에 저장하고 외부 백업은 다른 앱으로 공유합니다.</li><li>데이터 복원에서 백업파일을 선택해 데이터를 복원합니다.</li></ul><div class="note">복원하면 현재 데이터가 백업 당시 데이터로 바뀝니다. 복원 전에도 현재 데이터를 먼저 백업하세요.</div></div>
+        <div class="copy"><h2>9. 설정과 데이터 관리</h2><p>건물 정보, 기본 월세, 알림, 비상주와 백업·복원 기능을 관리합니다.</p><ul><li>건물명, 총 층수, 고시원 시작층과 끝층을 입력하고 저장합니다.</li><li>기본 보증금, 월세와 납부일을 저장합니다.</li><li>납부 예정 알림을 켜고 원하는 알림 시간을 정합니다.</li><li>내부 백업은 다운로드 폴더에 저장하고 외부 백업은 다른 앱으로 공유합니다.</li><li>데이터 복원에서 백업파일을 선택해 데이터를 복원합니다.</li></ul><div class="note">복원하면 현재 데이터가 백업 당시 데이터로 바뀝니다. 복원 전에도 현재 데이터를 먼저 백업하세요.</div></div>
       </article>
     </section>
 
