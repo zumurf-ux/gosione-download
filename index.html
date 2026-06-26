@@ -429,7 +429,7 @@
   {
     "appId": "gosione",
     "appName": "고시ONE",
-    "latestVersion": "5.0.81",
+    "latestVersion": "5.0.82",
     "apkName": "gosione_v5.0.81.apk",
     "releaseUrl": "https://github.com/zumurf-ux/gosione-download/releases/latest",
     "downloadPageUrl": "https://gosione.thedesignuncle.com/",
@@ -451,7 +451,7 @@
           <a class="btn secondary" href="manual.html">사용자 매뉴얼</a>
         </div>
         <p class="note">구매 후 발급받은 라이선스키를 앱 첫 실행 시 입력하시면 사용할 수 있습니다.</p>
-        <p class="note small-note latest-version">현재 최신 버전: 5.0.81</p>
+        <p class="note small-note latest-version" id="latestVersionText">현재 최신 버전: 확인 중</p>
         <div class="app-summary">
           <strong>고시ONE은 어떤 앱인가요?</strong>
           <p>고시원 객실 현황, 입주자 정보, 월세 납부, 입퇴실 기록, 민원/수리 내역을 한 곳에서 관리할 수 있는 고시원 전용 관리 앱입니다.</p>
@@ -551,6 +551,31 @@
 
       const fallbackUrl = "https://github.com/zumurf-ux/gosione-download/releases/latest";
 
+      function extractLatestVersion(release, apk) {
+        const values = [release && release.tag_name, release && release.name, apk && apk.name].filter(Boolean);
+        for (const value of values) {
+          const match = String(value).match(/(?:gosione[_-]?)?v?(\d+(?:\.\d+){1,3})/i);
+          if (match) return match[1];
+        }
+        return "";
+      }
+
+      function updateVersionInfo(release, apk) {
+        const latestVersion = extractLatestVersion(release, apk);
+        const text = document.getElementById("latestVersionText");
+        if (text) text.textContent = latestVersion ? "현재 최신 버전: " + latestVersion : "현재 최신 버전: 확인 불가";
+        const jsonNode = document.getElementById("app-version-info");
+        if (jsonNode && latestVersion) {
+          try {
+            const info = JSON.parse(jsonNode.textContent || "{}");
+            info.latestVersion = latestVersion;
+            if (apk && apk.name) info.apkName = apk.name;
+            if (release && release.html_url) info.releaseUrl = release.html_url;
+            jsonNode.textContent = "\n" + JSON.stringify(info, null, 2).split("\n").map(line => "  " + line).join("\n") + "\n  ";
+          } catch (error) {}
+        }
+      }
+
       async function setLatestApkLink() {
         try {
           const response = await fetch("https://api.github.com/repos/zumurf-ux/gosione-download/releases/latest", {
@@ -565,8 +590,11 @@
 
           if (!apk?.browser_download_url) throw new Error("apk asset missing");
           button.href = apk.browser_download_url;
+          updateVersionInfo(release, apk);
         } catch (error) {
           button.href = fallbackUrl;
+          const text = document.getElementById("latestVersionText");
+          if (text) text.textContent = "현재 최신 버전: 5.0.82";
         }
       }
 
